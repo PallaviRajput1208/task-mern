@@ -9,10 +9,14 @@ app.use(express.json());
 
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected", mongoose.connection.host))
+  .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => res.send("API running"));
+
+app.get("/api/test", (req, res) => {
+  res.json({ message: "Backend connected" });
+});
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on ${process.env.PORT}`),
